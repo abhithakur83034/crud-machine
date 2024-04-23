@@ -8,7 +8,7 @@ switch(action.type){
     case "PRODUCT":
         return{
             ...state,
-            data:action.payload
+            data:action.payload,
         }
         default:
             return state;

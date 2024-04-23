@@ -13,7 +13,7 @@ function NAVBAR() {
     console.log("cartData", allCartData)
      
 
-    let cartData = allCartData.filter((item)=>item._id == userId);
+    let cartData = allCartData.filter((item)=>item.userId == userId);
 
     // const dispatch = useDispatch()
 

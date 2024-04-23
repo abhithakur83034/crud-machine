@@ -6,14 +6,14 @@ const Cart = () => {
     let userData = JSON.parse(localStorage.getItem('user'));
     console.log(userData);
     let userId = userData?.user?._id;
-    console.log(userId);
+     console.log(userId);
 
     const allCartData = useSelector((state) => state.cartData)
     console.log("cartData", allCartData)
      
 
-    let cartData = allCartData.filter((item)=>item._id == userId);
-
+    let cartData = allCartData.filter((item)=>item.userId == userId);
+console.log(cartData);
     const dispatch = useDispatch()
 
 

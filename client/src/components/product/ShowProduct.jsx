@@ -20,6 +20,7 @@ const ShowProduct = () => {
     let getData =()=>{
         axios.get('http://localhost:4500/product/showproduct')
         .then((res) => {
+            console.log(res);
             dispatch({ payload: item(res.data), type: "PRODUCT" })
         })
         .catch((error) => {
@@ -61,7 +62,8 @@ const ShowProduct = () => {
 
 
     let admin = JSON.parse(localStorage.getItem('admin'))
-
+    let user = JSON.parse(localStorage.getItem('user'))
+console.log(user);
 
     return (
         <div>
@@ -142,14 +144,18 @@ const ShowProduct = () => {
                                     return dispatch({type:"ADD_TO_CART", payload:{...item}})
                                 }}>Add</Button> </td> */}
                                 <td>
-                                    <img src="https://media0.giphy.com/media/SMEGj0pb5eUKcnot8x/200w.webp?cid=ecf05e47r5ejpchlese5scldbkias3idl5dmojnm3xd4a2tj&ep=v1_gifs_search&rid=200w.webp&ct=g"
-                                        height="80px"
-                                        width="100px"
-                                        onClick={() => {
-                                            return dispatch({ type: "ADD_TO_CART", payload: { ...item } })
-                                        }}
-                                        alt="" />
-                                </td>
+                                <img src="https://media0.giphy.com/media/SMEGj0pb5eUKcnot8x/200w.webp?cid=ecf05e47r5ejpchlese5scldbkias3idl5dmojnm3xd4a2tj&ep=v1_gifs_search&rid=200w.webp&ct=g"
+                                    height="80px"
+                                    width="100px"
+                                    onClick={() => {
+                                        const payload = {
+                                            ...item,
+                                            userId: user?.user?._id 
+                                        };
+                                        dispatch({ type: "ADD_TO_CART", payload });
+                                    }}
+                                    alt="" />
+                            </td>
                             </tr>
                         );
                     })}
